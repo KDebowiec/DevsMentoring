@@ -1,11 +1,10 @@
 last_number = int(input('podaj liczbę: '))
-list=[]
-value=0
+list1 = []
+value = 0
 
 
-for i in range(1,last_number):
-    i=i+1
-    list.append(i)
+for i in range(last_number):
+    i = i+1
+    list1.append(i)
 
-list.append(1)
-print(sum(list))
+print(sum(list1))
