@@ -2,22 +2,40 @@ firstNumber = int(input('podaj pierwszą liczbe: '))
 secondNumber = int(input('podaj drugą liczbe: '))
 thirdNumber = int(input('podaj trzecią liczbe: '))
 
-numbers = []
+if firstNumber > secondNumber:
+    if firstNumber > thirdNumber:
+        print("największa liczba to:", firstNumber)
 
-numbers.append(firstNumber)
-numbers.append(secondNumber)
-numbers.append(thirdNumber)
+    else:
+        print("największa liczba to:", thirdNumber)
 
-smallest = None
-biggest = None
+if secondNumber > firstNumber:
+    if secondNumber > thirdNumber:
+        print('najwięsza liczba to: ', secondNumber)
+    else:
+        print('najwięsza liczba to: ', thirdNumber)
 
-for i in numbers:
-      if smallest == None or smallest > i: 
-        smallest = i
 
-for i in numbers:
-    if biggest == None or biggest < i:
-        biggest = i
 
-print ("najmniejsza liczba to:", smallest)
-print ("największa liczba to:", biggest)
+
+
+
+# numbers = []
+#
+# numbers.append(firstNumber)
+# numbers.append(secondNumber)
+# numbers.append(thirdNumber)
+#
+# smallest = None
+# biggest = None
+#
+# for i in numbers:
+#       if smallest == None or smallest > i:
+#         smallest = i
+#
+# for i in numbers:
+#     if biggest == None or biggest < i:
+#         biggest = i
+#
+# print ("najmniejsza liczba to:", smallest)
+# print ("największa liczba to:", biggest)

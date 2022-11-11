@@ -1,10 +1,10 @@
-for i in range(100, 50, -1):
+for i in range(100, 49, -1):
     print(i)
 
 
 
 number=100
-while number < 100 and number >= 50:
+while number >= 50:
     print(number)
     number-=1
     
