@@ -10,11 +10,11 @@
 
 
 nr_pesel ={
-'49385720512' : {'kolor_oczu' : 'niebieski', 'imie' : 'Karol', 'Nazwisko' : 'Dureń', 'wiek' : '28'},
-'56789024861' : {'kolor_oczu' : 'niebieski', 'imie' : 'Stefan', 'Nazwisko' : 'Dudek', 'wiek' : '67'},
-'56012348571' : {'kolor_oczu' : 'zielony', 'imie' : 'Jolanta', 'Nazwisko' : 'Kowalska', 'wiek' : '90'},
-'58697857463' : {'kolor_oczu' : 'brązowy', 'imie' : 'Bożena', 'Nazwisko' : 'Bemben', 'wiek' : '12'},
-'56781234567' : {'kolor_oczu' : 'brązowy', 'imie' : 'Krystyna', 'Nazwisko' : 'Grdyk', 'wiek' : '45'}}
+'49385720512' : {'kolor_oczu': 'niebieski', 'imie' : 'Karol', 'Nazwisko' : 'Dureń', 'wiek' : '28'},
+'56789024861' : {'kolor_oczu': 'niebieski', 'imie' : 'Stefan', 'Nazwisko' : 'Dudek', 'wiek' : '67'},
+'56012348571': {'kolor_oczu': 'zielony', 'imie' : 'Jolanta', 'Nazwisko' : 'Kowalska', 'wiek' : '90'},
+'58697857463': {'kolor_oczu': 'brązowy', 'imie' : 'Bożena', 'Nazwisko' : 'Bemben', 'wiek' : '12'},
+'56781234567': {'kolor_oczu': 'brązowy', 'imie' : 'Krystyna', 'Nazwisko' : 'Grdyk', 'wiek' : '45'}}
 
 for key in nr_pesel:
     nr_pesel['49385720512']["imie_matki"] = 'Adelajda'

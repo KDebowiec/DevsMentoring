@@ -16,7 +16,7 @@
 #     print('wygrał drugi gracz!')
 # elif firstPlayer == secondPlayer:
 #     print('jest remis!')
-# todo: zabezpieczenie przed wyborem innym niż papier kamień lub nożyce
+
 
 
 question = "Podaj swoją figurę(kamień/papier/nożyce): "
