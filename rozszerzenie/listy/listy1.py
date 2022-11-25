@@ -7,8 +7,16 @@ first_list = []
 
 
 sentence = input('wprowadż zdanie: ')
-
-new_text = re.sub(r"[^a-zA-Z0-9 ]", "", sentence)
+x = sentence.replace('!', '')
+x = x.replace('?', '')
+x = x.replace('.', '')
+x = x.replace(',', '')
+x = x.replace(';', '')
+x = x.replace(':', '')
+x = x.replace('/', '')
+x = x.replace('(', '')
+x = x.replace(')', '')
+new_text = x.replace('-', '')
 first_list = new_text.split()
 first_list.reverse()
 print('reversed sentence: ', first_list)

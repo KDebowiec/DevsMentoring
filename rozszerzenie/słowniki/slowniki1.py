@@ -19,13 +19,14 @@ for key in dictionary_1:
     print(key, end = ', ')
 print('\n')
 
-Album = input('podaj album którego wykonawce chcesz poznać: ')
+# Album = input('podaj album którego wykonawce chcesz poznać: ')
 
-
-while Album in dictionary_1:
-    Singer = dictionary_1.get(Album)
-    print(f'wykonawcą {Album} jest {Singer}')
+while True:
     Album = input('podaj album którego wykonawce chcesz poznać: ')
-else:
-    print('Nie ma takiego albumu')
-#jak to zrobić żeby po wpisaniu złego albumu petla wykonała sie od nowa
+    while Album in dictionary_1:
+        Singer = dictionary_1.get(Album)
+        print(f'wykonawcą {Album} jest {Singer}')
+        Album = input('podaj album którego wykonawce chcesz poznać: ')
+    else:
+        print('Nie ma takiego albumu')
+

@@ -1,13 +1,11 @@
 my_favourites = {'zielony', 'niebieski', 'czarny'}
 user_favourites = None
 user_favourites_list = []
-user_favourites_set = {}
+user_favourites_set = ()
 
 user_favourites =input("podaj ulubione kolory, w jednej linii oddzielone spacjami: ")
 user_favourites_list = user_favourites.split()
-# print(user_favourites_list)
 user_favourites_set = set(user_favourites_list)
-# print(user_favourites_set)
 if my_favourites != user_favourites_set:
     if my_favourites & user_favourites_set != 0:
         print(f'oboje wybralismy {my_favourites & user_favourites_set}')
@@ -20,3 +18,5 @@ if my_favourites != user_favourites_set:
 
 else:
     print('wybraliśmy takie same kolory')
+
+    

@@ -5,12 +5,13 @@
 # “S002”, “S009”, “S007”
 random = {"V": "S001", "VI": "S002", "VII": "S001", "VIII": "S005", "IX": "S005", "X": "S009", "XI": "S007"}
 random_values = []
-unique_values = None
+unique_values = []
 
-random_values = random.values()
-print(random_values)
+random_values = list(random.values())
 
-unique_values = set(random_values)
-print(unique_values)
+for i in random_values:
+    if random_values.count(i) == 1:
+        unique_values.append(i)
 
-#TODO dokonczyc
+print(' '.join(unique_values))
+

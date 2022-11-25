@@ -13,14 +13,15 @@
 # • wyznaczy liczbę elementów lista3
 # • powiększy lista1 o elementy lista3
 # Po każdej przeprowadzonej zmianie wydrukuje zmienioną listę.
-from typing import List
-new_element = 0
+
 
 lista1 = ["abc", "def", "ghi", "jkl"]
-lista2: list[int] = [1, 2, 3, 4, 5]
+lista2 = [1, 2, 3, 4, 5]
 lista3 = ["xyz", 1, '2']
+lista4 = [lista1, lista2, lista3]
 
-print(lista1, '\n', lista2, '\n', lista3)
+for i in lista4:
+    print(i)
 print(lista1[0], lista1[3])
 
 lista2[1] = lista3[1]

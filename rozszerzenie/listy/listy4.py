@@ -4,9 +4,10 @@
 person = None
 person_list = []
 
-person = input('podaj imiona swoich znajomych: ')
-
-person_list = person.split()
-
-print(f'hej {person_list[0]} co u Ciebie ')
-#TODO itp itd coś chyba polecienie nieteges bo po co tu lista w ogóle
+while person != "q":
+    print("Wpisz 'q' by zakonczyc.")
+    person = input('podaj imie znajomego: ')
+    if person != "q":
+        person_list.append(person)
+    for name in person_list:
+        print(f'hej {name} co u Ciebie ')

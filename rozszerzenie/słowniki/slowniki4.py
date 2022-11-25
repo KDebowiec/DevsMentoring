@@ -18,6 +18,8 @@ text = 'W polowie maja, juz przed wschodem slonca, o trzeciej zaczyna spiewac dr
        'Dwadziescia minut pozniej i wilga akcentuje swoja obecnosc wysoko w koronach drzew.' \
        ' Jeszcze pozniej swoje trzy grosze dodaje szpak, a tuz po nim kopciuszek. ' \
        'Najwiekszymi spiochami w tej ferajnie okazuja sie byc dzwoniec i szczygiel.'
-new_text = None
 
-#TODO dokończ
+for bird in dictionary_birds.keys():
+    text = text.replace(bird, f"{bird}({dictionary_birds[bird]})")
+
+print(text)

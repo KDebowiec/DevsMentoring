@@ -11,10 +11,10 @@ numbers_list = [12, 1, 45, 76, 50, 23]
 for i in numbers_list:
     if i < 1 or i > 48:
         print(f'liczba {i} zostanie zastąpiona')
-        numbers_list.remove(i)
-        numbers_list.append(random.randint(1, 49))
-    else:
-        continue
-print(numbers_list)
+        valid_number = random.randint(1, 49)
 
-#TODO znajduje tylko pierwszą liczbe spoza przedzialu czyli 76 a następne - tutaj 50 - ma w dupie
+        index = numbers_list.index(i)
+        numbers_list[index] = valid_number
+
+
+print(numbers_list)

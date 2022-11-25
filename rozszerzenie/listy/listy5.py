@@ -13,9 +13,19 @@ new_text = None
 sentence_list = []
 big_letters = []
 list_of_words = []
+special_words = ['i', 'na', 'pod', 'dla', 'w']
 
 sentence = input('wpisz zdanie: ')
-new_text = re.sub(r"[^a-zA-Z0-9 ]", "", sentence)
+x = sentence.replace('!', '')
+x = x.replace('?', '')
+x = x.replace('.', '')
+x = x.replace(',', '')
+x = x.replace(';', '')
+x = x.replace(':', '')
+x = x.replace('/', '')
+x = x.replace('(', '')
+x = x.replace(')', '')
+new_text = x.replace('-', '')
 sentence_list = new_text.split()
 print(f'liczba wyrazów w zdaniu to {len(sentence_list)}')
 
@@ -31,14 +41,12 @@ if big_letters:
 else:
     print("zaden wyraz nie zaczyna sie dużą literą")
 
-print('\n')
 for i in sentence_list:
-    if i == 'i' or 'w' or 'na' or 'pod' or 'dla':
-        print(f'{i} znaleziono w zdaniu')  #TODO nie działa, wyświetla dla każdego słowa a nie tylko tych podanych
+    if i in special_words:
+        print(f'{i} znaleziono w zdaniu')
         print(f'indeks tego słowa to {sentence_list.index(i)}')
         list_of_words.append(i)
-    else:
-        continue
+
 
 if not list_of_words:
     print('żadne z tych słów nie znalazło się w zdaniu')
