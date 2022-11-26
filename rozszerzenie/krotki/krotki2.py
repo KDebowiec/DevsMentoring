@@ -1,26 +1,14 @@
-sentence = None
-list_ = []
-conversed_set = None
-
 sentence = input('wpisz zdanie: ')
-x = sentence.split('?')
-xx = ' '.join(x)
-y = xx.split('?')
-yy = ' '.join(y)
-z = yy.split('!')
-zz = ' '.join(z)
-a = zz.split(',')
-aa = ' '.join(a)
-b = aa.split('.')
-bb = ' '.join(b)
-c = bb.split(':')
-cc = ' '.join(c)
-list_ = cc.split(';')
+forbidden_signs = ['?', '!', ',', '.', ':', ';']
 
+for i in forbidden_signs:
+    sentence.replace(i, ' ')
 
-conversed_set = set(list_)
+list_ = sentence.split(' ')
 
-print(f'zdanie ma {len(conversed_set)} unikatowych wyrazów')
+converted_set = set(list_)
+
+print(f'zdanie ma {len(converted_set)} unikatowych wyrazów')
 print(list_)
 
 print(' '.join(list_))

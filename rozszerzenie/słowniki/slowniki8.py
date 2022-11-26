@@ -4,7 +4,6 @@
 # Oczekujemy wyniku:
 # “S002”, “S009”, “S007”
 random = {"V": "S001", "VI": "S002", "VII": "S001", "VIII": "S005", "IX": "S005", "X": "S009", "XI": "S007"}
-random_values = []
 unique_values = []
 
 random_values = list(random.values())
@@ -14,4 +13,3 @@ for i in random_values:
         unique_values.append(i)
 
 print(' '.join(unique_values))
-

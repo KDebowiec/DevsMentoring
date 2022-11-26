@@ -13,8 +13,6 @@
 # • wyznaczy liczbę elementów lista3
 # • powiększy lista1 o elementy lista3
 # Po każdej przeprowadzonej zmianie wydrukuje zmienioną listę.
-
-
 lista1 = ["abc", "def", "ghi", "jkl"]
 lista2 = [1, 2, 3, 4, 5]
 lista3 = ["xyz", 1, '2']

@@ -21,42 +21,18 @@ for i in range(1, n):
         list_b.append(i)
 
 set_b = set(list_b)
-
 set_c = set_a | set_b
 set_d = set_a & set_b
 set_e = set_a - set_b
 set_f = set_a ^ set_b
 
-print(f'zbiór A ma{len(set_a)} elementów, oto one: ')
-for i in set_a:
-    print(i, end=' ')
-# print(' '.join(set_a))
-print('\n')
+list_of_sets = [set_a, set_b, set_c, set_d, set_e, set_f]
 
-print(f'zbiór B ma {len(set_b)} elementów, oto one: ')
-for i in set_b:
-    print(i, end=' ')
-print('\n')
+for i in list_of_sets:
+    print(f'{i} ma{len(i)} elementów, oto one: ')
+    for y in i:
+        print(y)
 
-print(f'zbiór C ma {len(set_c)} elementów, oto one: ')
-for i in set_c:
-    print(i, end=' ')
-print('\n')
-
-print(f'zbiór D ma {len(set_d)} elementów, oto one: ')
-for i in set_d:
-    print(i, end=' ')
-print('\n')
-
-print(f'zbiór E ma {len(set_e)} elementów, oto one: ')
-for i in set_e:
-    print(i, end=' ')
-print('\n')
-
-print(f'zbiór F ma {len(set_f)} elementów, oto one: ')
-for i in set_f:
-    print(i, end=' ')
-print('\n')
 
 if set_a & set_b == set_b:
     print('zbiór B zawiera się w zbiorze A')

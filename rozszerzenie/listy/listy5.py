@@ -6,30 +6,20 @@
 # i jakie są ich indeksy na liście. Jeśli żaden z poszukiwanych wyrazów w zdaniu nie występuje program
 # również powinien o tym informować
 # • posortować wyrazy ze zdania alfabetycznie i wydrukować je w zmienionej kolejności.
-import re
-
-sentence = None
-new_text = None
-sentence_list = []
 big_letters = []
 list_of_words = []
 special_words = ['i', 'na', 'pod', 'dla', 'w']
+forbidden_signs = ['?', '!', ',', '.', ':', ';']
 
 sentence = input('wpisz zdanie: ')
-x = sentence.replace('!', '')
-x = x.replace('?', '')
-x = x.replace('.', '')
-x = x.replace(',', '')
-x = x.replace(';', '')
-x = x.replace(':', '')
-x = x.replace('/', '')
-x = x.replace('(', '')
-x = x.replace(')', '')
-new_text = x.replace('-', '')
-sentence_list = new_text.split()
-print(f'liczba wyrazów w zdaniu to {len(sentence_list)}')
 
-for i in sentence_list:
+for i in forbidden_signs:
+    sentence.replace(i, ' ')
+list_ = sentence.split(' ')
+
+print(f'liczba wyrazów w zdaniu to {len(list_)}')
+
+for i in list_:
     if not str.islower(i):
         big_letters.append(i)
     else:
@@ -41,10 +31,10 @@ if big_letters:
 else:
     print("zaden wyraz nie zaczyna sie dużą literą")
 
-for i in sentence_list:
+for i in list_:
     if i in special_words:
         print(f'{i} znaleziono w zdaniu')
-        print(f'indeks tego słowa to {sentence_list.index(i)}')
+        print(f'indeks tego słowa to {list_.index(i)}')
         list_of_words.append(i)
 
 
