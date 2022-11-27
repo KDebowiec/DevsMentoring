@@ -7,7 +7,6 @@
 # liczebności i zawartych w nim elementach. Na koniec program sprawdzi, czy zbiór B
 #  zawiera się w zbiorze A.
 n = int(input('podaj liczbę naturalną: '))
-
 list_a = []
 list_b = []
 
@@ -30,8 +29,9 @@ list_of_sets = [set_a, set_b, set_c, set_d, set_e, set_f]
 
 for i in list_of_sets:
     print(f'{i} ma{len(i)} elementów, oto one: ')
-    for y in i:
-        print(y)
+    print(i)
+#TODO w tej chwili zdanie wyjdzie "{1, 2, 3, 4, 5, 6, 7, 8, 9} ma9 elementów, oto one:" zamiast np set_a ma 9 elementów
+
 
 
 if set_a & set_b == set_b:

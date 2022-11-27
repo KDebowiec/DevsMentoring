@@ -11,7 +11,7 @@ dictionary_1 = {'The Sensual World' : 'Kate Bush', 'Shaday' : 'Ofra Haza', 'Acht
                 'Aion' : 'Dead Can Dance', 'Invisible Touch' : 'Genesis'}
 
 for key in dictionary_1:
-    print(key, end = ', ')
+    print(key, end=', ')
 print('\n')
 
 while True:

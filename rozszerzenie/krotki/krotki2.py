@@ -10,7 +10,6 @@ converted_set = set(list_)
 
 print(f'zdanie ma {len(converted_set)} unikatowych wyrazów')
 print(list_)
-
 print(' '.join(list_))
 
 if len(list_) >= 4:
