@@ -7,7 +7,7 @@ for i in a:
     if i in b:
         c.append(i)
 
-if c != 0:
+if c:
     print('Te listy mają chociaż jeden wspólny element')
 else:
     print('nie mają wspólnego elementu')

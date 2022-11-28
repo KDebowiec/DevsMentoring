@@ -5,7 +5,7 @@
 number = int(input('podaj górną granicę: '))
 numbers_dictionary = {}
 
-for number in range(1,number+1):
-    numbers_dictionary.update({number : number*number})
+for number in range(1, number+1):
+    numbers_dictionary.update({number: number*number})
 
 print(numbers_dictionary)

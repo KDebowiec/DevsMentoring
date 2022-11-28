@@ -5,7 +5,10 @@
 # {3 : ‘a’, 1 : ‘b’, 10 : ‘c’, 15 : ‘d’, 20 : ‘e’}
 
 example = {'a': 3, 'b': 1, 'c': 10, 'd': 15, 'e': 20}
+reversed_dict = {}
 
-for i in example:
-    print()
+for key, value in example.items():
+    reversed_dict[value] = key
 
+
+print(reversed_dict)

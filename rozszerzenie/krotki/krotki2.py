@@ -2,9 +2,9 @@ sentence = input('wpisz zdanie: ')
 forbidden_signs = ['?', '!', ',', '.', ':', ';']
 
 for i in forbidden_signs:
-    sentence.replace(i, ' ')
+    sentence = sentence.replace(i, ' ')
 
-list_ = sentence.split(' ')
+list_ = sentence.split()
 
 converted_set = set(list_)
 

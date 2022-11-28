@@ -20,19 +20,13 @@ for i in range(1, n):
         list_b.append(i)
 
 set_b = set(list_b)
-set_c = set_a | set_b
-set_d = set_a & set_b
-set_e = set_a - set_b
-set_f = set_a ^ set_b
 
-list_of_sets = [set_a, set_b, set_c, set_d, set_e, set_f]
+dict_of_sets = {'set a': set_a, 'set b': set_b, 'set c': set_a | set_b, 'set d': set_a & set_b,
+                'set e': set_a - set_b, 'set f': set_a ^ set_b}
 
-for i in list_of_sets:
-    print(f'{i} ma{len(i)} elementów, oto one: ')
-    print(i)
-#TODO w tej chwili zdanie wyjdzie "{1, 2, 3, 4, 5, 6, 7, 8, 9} ma9 elementów, oto one:" zamiast np set_a ma 9 elementów
-
-
+for i in dict_of_sets.keys():
+    print(f'{i} ma {len(dict_of_sets[i])} elementów, oto one: ')
+    print(dict_of_sets[i])
 
 if set_a & set_b == set_b:
     print('zbiór B zawiera się w zbiorze A')

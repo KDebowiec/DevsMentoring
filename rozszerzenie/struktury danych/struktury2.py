@@ -5,7 +5,7 @@ random_list = []
 elements_to_remove = []
 final_set = {}
 
-for i in range(1, 16):
+for i in range(15):
     random_list.append(random.randint(5, 120))
 
 random_set = set(random_list)
