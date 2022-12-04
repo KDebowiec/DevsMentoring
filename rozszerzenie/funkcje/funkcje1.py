@@ -5,9 +5,17 @@
 # Dodatkowo:
 # Zapoznaj się funkcją enumerate z dokumentacji https://book.pythontips.com/en/latest/enumerate.html.
 # Spróbuj ją zastosować w rozwiązaniu powyższego zadania.
-nums = [4, 6, 8, 24, 12, 2]
 
-for counter, value in enumerate(nums):
-    print(counter, value)
+def searching_for_biggest(nums):
+    for counter, value in enumerate(nums):
+        if value is max(nums):
+            print(f'indeks największego elementu listy to {counter}')
 
-    #TODO to bedzie dokonczone
+
+def main():
+    nums = [4, 6, 8, 24, 12, 2]
+    searching_for_biggest(nums)
+
+
+if __name__ == '__main__':
+    main()
