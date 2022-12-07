@@ -36,3 +36,4 @@ for i in list_of_dictionary:
                     if type(x) is str:
                         string_list.append(x)
 print(string_list)
+

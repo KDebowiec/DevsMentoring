@@ -38,45 +38,23 @@ bill_items = [
     ['Rosie', 'Veneziana', 9.40],
     ['Rosie', 'Tiramisu', 4.90],
 ]
-Tom_dishes = []
-Tom_price = 0
-Claire_dishes = []
-Claire_price = 0
-Rich_dishes = []
-Rich_price = 0
-Rosie_dishes = []
-Rosie_price = 0
 final_bill = {}
 
-for i in bill_items:
-    if i[0] == 'Tom':
-        Tom_dishes.append(i[1])
-        Tom_price = Tom_price + i[2]
-        Tom = {}
-        Tom.update({'potrawy': Tom_dishes})
-        Tom.update({'cena': Tom_price})
-        final_bill.update({'Tom': Tom})
-    if i[0] == 'Claire':
-        Claire_dishes.append(i[1])
-        Claire_price = Claire_price + i[2]
-        Claire = {}
-        Claire.update({'potrawy': Claire_dishes})
-        Claire.update({'cena': Claire_price})
-        final_bill.update({'Claire': Claire})
-    if i[0] == 'Rich':
-        Rich_dishes.append(i[1])
-        Rich_price = Rich_price + i[2]
-        Rich = {}
-        Rich.update({'potrawy': Rich_dishes})
-        Rich.update({'cena': Rich_price})
-        final_bill.update({'Rich': Rich})
-    if i[0] == 'Rosie':
-        Rosie_dishes.append(i[1])
-        Rosie_price = Rosie_price + i[2]
-        Rosie = {}
-        Rosie.update({'potrawy': Rosie_dishes})
-        Rosie.update({'cena': Rosie_price})
-        final_bill.update({'Rosie': Rosie})
+
+for order in bill_items:
+    customer = order[0]
+
+    if customer not in final_bill:
+        final_bill[customer] = {
+            "potrawy": [],
+            "cena": 0,
+        }
+
+    dish = order[1]
+    price = order[2]
+
+    final_bill[customer]["potrawy"].append(dish)
+    final_bill[customer]["cena"] += price
+
 
 print(final_bill)
-
