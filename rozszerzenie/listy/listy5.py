@@ -19,22 +19,22 @@ list_ = sentence.split(' ')
 
 print(f'liczba wyrazów w zdaniu to {len(list_)}')
 
-for i in list_:
-    if not str.islower(i):
-        big_letters.append(i)
+for element in list_:
+    if  str.istitle(element):
+        big_letters.append(element)
     else:
         continue
 if big_letters:
     print('te wyrazy zaczynają się dużą literą:')
-    for i in big_letters:
-        print(i, end = ' ')
+    for word in big_letters:
+        print(' '.join(big_letters))
 else:
     print("zaden wyraz nie zaczyna sie dużą literą")
 
-for i in list_:
-    if i in special_words:
-        print(f'{i} znaleziono w zdaniu')
-        print(f'indeks tego słowa to {list_.index(i)}')
+for element in list_:
+    if element in special_words:
+        print(f'{element} znaleziono w zdaniu')
+        print(f'indeks tego słowa to {list_.index(element)}')
         list_of_words.append(i)
 
 

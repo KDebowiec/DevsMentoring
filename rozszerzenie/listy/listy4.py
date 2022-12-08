@@ -3,11 +3,23 @@
 # spersonalizowany komunikat, na przykład powitanie, pozdrowienie, który będzie skierowany do konkretnej osoby.
 person = None
 person_list = []
+is_running = True
 
-while person != "q":
+while is_running:
     print("Wpisz 'q' by zakonczyc.")
     person = input('podaj imie znajomego: ')
-    if person != "q":
-        person_list.append(person)
-    for name in person_list:
-        print(f'hej {name} co u Ciebie ')
+    person_list.append(person)
+    if person == "q":
+        is_running = False
+
+for name in person_list:
+    print(f'hej {name} co u Ciebie ')
+
+
+# while person != "q":
+#     print("Wpisz 'q' by zakonczyc.")
+#     person = input('podaj imie znajomego: ')
+#     if person != "q":
+#         person_list.append(person)
+#     for name in person_list:
+#         print(f'hej {name} co u Ciebie ')
