@@ -18,6 +18,6 @@ a_list = new_text.split()
 
 
 for i in a_list:
-    text_dictionary.update({i : a_list.count(i)})
+    text_dictionary.update({i: a_list.count(i)})
 
 print(text_dictionary)
