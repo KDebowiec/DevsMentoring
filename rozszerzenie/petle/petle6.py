@@ -7,15 +7,18 @@
 # 3: 1
 # 5: 4
 number = input('podaj liczbę: ')
-digit = 0
 digits_in_number = []
-digits_set = ()
+digits_dict = {}
 
 for i in number:
     digit = int(i)
     digits_in_number.append(digit)
 
-digits_set = set(digits_in_number)
+for i in digits_in_number:
+    if i not in digits_dict:
+        digits_dict[i] = 1
+    else:
+        digits_dict[i] += 1
 
-for i in digits_set:
-    print(f'{i} występuje {digits_in_number.count(i)} razy')
+for key in digits_dict:
+    print(f'{key} : {digits_dict[key]}')

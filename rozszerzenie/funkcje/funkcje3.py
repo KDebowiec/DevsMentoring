@@ -5,12 +5,12 @@
 # 4. W przeciwnym razie, zwracaj przekazaną liczbę.
 def fizz_buzz(number):
 
-    if number % 3 == 0:
-        print('Fizz')
+    if number % 3 == 0 and number % 5 == 0:
+        print('FizzBuzz')
     elif number % 5 == 0:
         print('Buzz')
-    elif number % 3 == 0 and number % 5 == 0:
-        print('FizzBuzz')
+    elif number % 3 == 0:
+        print('Fizz')
     else:
         print(number)
 
@@ -22,3 +22,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#TODO zmienić kolejność, dla Fizzbuzz jako pierwsze

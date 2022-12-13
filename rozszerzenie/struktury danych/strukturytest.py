@@ -1,16 +1,25 @@
-start_fuel = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
-astronauts = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
 traveled_distance = 100
 
-while 5000 > start_fuel or start_fuel > 30000:
-    print('podałeś błędną ilość paliwa, spróbuj jeszcze raz')
-    start_fuel = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
 
-while 0 >= astronauts or astronauts > 7:
-    print('podaj właściwą liczbę astronautów!')
-    astronauts = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
+def set_fuel():
+    start_fuel_input = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
 
-reach = int((start_fuel / (300 + 100 * astronauts)) * 100)
+    while 5000 > start_fuel_input or start_fuel_input > 30000:
+        print('podałeś błędną ilość paliwa, spróbuj jeszcze raz')
+        start_fuel = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
+        return start_fuel
+
+
+def set_astronauts():
+    start_astronauts_input = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
+
+    while 0 >= start_astronauts_input or start_astronauts_input > 7:
+        print('podaj właściwą liczbę astronautów!')
+        astronauts = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
+        return astronauts
+
+
+reach = int((set_fuel() / (300 + 100 * set_astronauts())) * 100)
 
 for i in range(reach, 0, -100):
     print(f'przebyto {traveled_distance}  km')

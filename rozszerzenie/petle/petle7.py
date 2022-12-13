@@ -3,16 +3,13 @@
 # 0, 1, 1, 2, 3, 5
 # Pierwszy wyraz jest równy 0, drugi jest równy 1, każdy następny jest sumą dwóch poprzednich.
 number = int(input('podaj liczbę: '))
-list_of_all = []
-list_fibonacci = []
-for i in range(number+1):
-    list_of_all.append(i)
 
-print(list_of_all)
+list_fibonacci = [0, 1]
 
-if list_of_all[i] in list_of_all == list_of_all[i-2] + list_of_all[i-1]:
-    list_fibonacci.append((list_of_all[i]))
+for i in range(number-2):
+    num_1 = list_fibonacci[i]
+    num_2 = list_fibonacci[i+1]
+
+    list_fibonacci.append(num_1+num_2)
 
 print(list_fibonacci)
-
-#TODO dokończyć

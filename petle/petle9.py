@@ -1,9 +1,4 @@
-start_fuel = 0
-astronauts = 0
-reach = 0
-current_level = 0
-usage = 0
-interval = 0
+
 traveled_distance = 100
 
 start_fuel = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))

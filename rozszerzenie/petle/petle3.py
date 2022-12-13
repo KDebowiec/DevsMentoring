@@ -4,14 +4,18 @@
 # Adam - Joanna, Adam - Kornelia, Adam - Kacper itd.
 
 names_list = ['Adam', 'Stanislaw', 'Joanna', 'Kornelia', 'Kacper']
-pairs = []
 
-for i in names_list:
-    for y in names_list:
-        if y != i:
-            pair = [y,i]
-            if pair not in pairs and pair.reverse() not in pairs:
-                pairs.append(pair)
+for i in range(len(names_list)):
+    for y in range(i+1, len(names_list)):
+        print(names_list[i], names_list[y])
 
-for i in pairs:
-    print(' '.join(i))
+
+# for i in names_list:
+#     for y in names_list:
+#         if y != i:
+#             pair = [y,i]
+#             if pair not in pairs and pair.reverse() not in pairs:
+#                 pairs.append(pair)
+#
+# for i in pairs:
+#     print(' '.join(i))
