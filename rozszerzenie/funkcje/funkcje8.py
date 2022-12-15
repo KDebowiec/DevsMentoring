@@ -6,20 +6,19 @@
 # print(abs(-5)) # 5
 # def one_list(**kwargs):
 def equation(**kwargs):
-    angle = abs(6 * kwargs['kwarg_2'] - 30 * (kwargs['kwarg_1'] + kwargs['kwarg_2'] / 60))
-    print(f'kąt między wskazówkami to {angle}')
+    angle = abs(6 * kwargs['minutes_on_clock'] - 30 * (kwargs['hours_on_clock'] + kwargs['minutes_on_clock'] / 60))
+    if angle > 180:
+        ultimate_angle = 360 - angle
+        print(f'kąt między wskazówkami to {ultimate_angle}')
+    else:
+        print(f'kąt między wskazówkami to {angle}')
 
 
-def main():
-    time = input('która jest godzina? podaj w formacie 12:00: ')
-    time_list = time.split(':')
-    hour = int(time_list[0])
-    minute = int(time_list[1])
-    equation(kwarg_1=hour, kwarg_2=minute)
-
-
-if __name__ == '__main__':
-    main()
+time = input('która jest godzina? podaj w formacie 12:00: ')
+time_list = time.split(':')
+hour = int(time_list[0])
+minute = int(time_list[1])
+equation(hours_on_clock=hour, minutes_on_clock=minute)
 
 
 
