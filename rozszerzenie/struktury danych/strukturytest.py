@@ -1,36 +1,20 @@
-traveled_distance = 100
+city_rain_dict = {}
+new_data = input('podaj miasto i opad np. Boston 12, by zobaczyć wynik dodaj puste: ')
 
+while new_data:
+    new_data = input('podaj miasto i opad np. Boston 12, by zobaczyć wynik dodaj puste: ')
+    if new_data:
+        new_data = new_data.split()
+        new_city = new_data[0]
+        new_amount = int(new_data[1])
 
-def set_fuel():
-    start_fuel_input = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
-    while 4999 > start_fuel_input or start_fuel_input > 30000:
-        print('podałeś błędną ilość paliwa, spróbuj jeszcze raz')
-        start_fuel = int(input('początkowy poziom paliwa(co najmniej 5000, najwyżej 30000: '))
-        return start_fuel
+        if new_city in city_rain_dict:
+            new_amount = int(new_data[1]) + city_rain_dict.get(new_city)
+
+        city_rain_dict.update({new_city: new_amount})
+    elif new_data == 0:
+        break
     else:
-        start_fuel = start_fuel_input
-        return start_fuel
-
-
-def set_astronauts():
-    start_astronauts_input = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
-    while 0 >= start_astronauts_input or start_astronauts_input > 7:
-        print('podaj właściwą liczbę astronautów!')
-        astronauts = int(input('początkowa liczba astronautów, najwyżej siedmiu: '))
-        return astronauts
-    else:
-        astronauts = start_astronauts_input
-        return astronauts
-
-
-reach_ = int((set_fuel() / (300 + 100 * set_astronauts())) * 100)
-
-
-for i in range(reach_, 0, -100):
-    print(f'przebyto {traveled_distance}  km')
-    traveled_distance += 100
-
-if traveled_distance >= 2000:
-    print('statek dotarł do orbity')
-else:
-    print('statek nie dotarł do orbity')
+        for i in city_rain_dict:
+            print(i, city_rain_dict[i])
+        break
