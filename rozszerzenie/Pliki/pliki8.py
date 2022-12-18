@@ -8,9 +8,14 @@
 # Następnie zapisz tak utworzony słownik do pliku o nazwie output.json.
 def match(**kwargs):
     new_dict = {}
-    for element in kwargs:
-        print(element['fighter_name'])
+    list_of_values = [kwargs.get("imie_zawodnika"), kwargs.get("kraj_pochodzenia")]
+    list_of_keys = list(kwargs.keys())
+    for element in list_of_values:
+        for i in list_of_values:
+            list_of_values[element] = new_dict[i]
 
+
+#TODO co ja w ogole kurwa robie
 
 def main():
     fighter_name = input('podaj nazwisko zawodnika: ')
@@ -21,10 +26,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-    # if customer not in final_bill:
-    #     final_bill[customer] = {
-    #         "potrawy": [],
-    #         "cena": 0,
-    #     }
