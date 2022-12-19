@@ -2,4 +2,4 @@
 # |
 #
 # Jak możesz zauważyć, gdzieniegdzie wkradły się powtórzenia słów. Zmodyfikuj i zapisz nowy plik tak, aby się ich pozbyć.
-#TODO polecenie bez sensu
+#TODO do zrobienia

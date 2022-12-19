@@ -8,7 +8,7 @@
 def equation(**kwargs):
     angle = abs(6 * kwargs['minutes_on_clock'] - 30 * (kwargs['hours_on_clock'] + kwargs['minutes_on_clock'] / 60))
     if angle > 180:
-        ultimate_angle = 360 - angle
+        ultimate_angle = abs(360 - angle)
         print(f'kąt między wskazówkami to {ultimate_angle}')
     else:
         print(f'kąt między wskazówkami to {angle}')

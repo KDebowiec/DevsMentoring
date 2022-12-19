@@ -41,14 +41,20 @@ def set_astronauts():
         return astronauts
 
 
-reach_ = int((set_fuel() / (300 + 100 * set_astronauts())) * 100)
+def journey(amount_of_fuel, amount_of_astronauts):
+    traveled_distance = 100
+    reach_ = int((amount_of_fuel / (300 + 100 * amount_of_astronauts)) * 100)
+
+    for i in range(reach_, 0, -100):
+        print(f'przebyto {traveled_distance}  km')
+        traveled_distance += 100
+
+    if traveled_distance >= 2000:
+        print('statek dotarł do orbity')
+    else:
+        print('statek nie dotarł do orbity')
 
 
-for i in range(reach_, 0, -100):
-    print(f'przebyto {traveled_distance}  km')
-    traveled_distance += 100
-
-if traveled_distance >= 2000:
-    print('statek dotarł do orbity')
-else:
-    print('statek nie dotarł do orbity')
+fuel = set_fuel()
+astronauts = set_astronauts()
+journey(fuel, astronauts)

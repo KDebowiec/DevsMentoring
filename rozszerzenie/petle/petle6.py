@@ -11,8 +11,7 @@ digits_in_number = []
 digits_dict = {}
 
 for i in number:
-    digit = int(i)
-    digits_in_number.append(digit)
+    digits_in_number.append(i)
 
 for i in digits_in_number:
     if i not in digits_dict:

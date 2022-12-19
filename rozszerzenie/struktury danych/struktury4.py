@@ -12,24 +12,25 @@
 # Boston : 24
 # Londyn : 10
 city_rain_dict = {}
+run = True
 
-while True:
+while run:
     new_data = input('podaj miasto i opad np. Boston 12, by zobaczyć wynik dodaj puste: ')
     if new_data:
         new_data = new_data.split()
         new_city = new_data[0]
         new_amount = int(new_data[1])
 
+        # if new_city in city_rain_dict:
+        #     new_amount = int(new_data[1]) + city_rain_dict.get(new_city)
+        #
+        # city_rain_dict.update({new_city: new_amount})
         if new_city in city_rain_dict:
-            new_amount = int(new_data[1]) + city_rain_dict.get(new_city)
-
-        city_rain_dict.update({new_city: new_amount})
-    elif new_data == 0:
-        break
+            city_rain_dict[new_city] += new_amount
+        else:
+            city_rain_dict[new_city] = new_amount
     else:
         for i in city_rain_dict:
             print(i, city_rain_dict[i])
         break
-
-
-
+#TODO Zmieniic
