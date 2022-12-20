@@ -6,7 +6,8 @@
 zamowienia = {"Klient_1335": {"nazwa_potrawy": "rosół", "ocena": 5, "rachunek": 20.0},
               "Klient_222": {"nazwa_potrawy": "lody waniliowe", "rachunek": 5.0}}
 
-for key in zamowienia:
-    print(zamowienia['Klient_1335'])
 
-    #TODO dokończyć
+for customer in zamowienia:
+    print(f'{customer}: ')
+    for position in (zamowienia[customer]):
+        print(f'{position} : {zamowienia[customer][position]}')
