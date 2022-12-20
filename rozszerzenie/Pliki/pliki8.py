@@ -6,23 +6,24 @@
 # strukturę: {wartość1:klucz1, wartość2:klucz2}.
 #
 # Następnie zapisz tak utworzony słownik do pliku o nazwie output.json.
+import json
 def match(**kwargs):
     new_dict = {}
-    list_of_values = [kwargs.get("imie_zawodnika"), kwargs.get("kraj_pochodzenia")]
-    list_of_keys = list(kwargs.keys())
-    for element in list_of_values:
-        for i in list_of_values:
-            list_of_values[element] = new_dict[i]
+    for element in kwargs:
+        new_dict[kwargs[element]] = element
+    return new_dict
 
 
-#TODO co ja w ogole kurwa robie
-
-def main():
-    fighter_name = input('podaj nazwisko zawodnika: ')
-    fighter_country = input('podaj kraj pochodzenia zawodnika: ')
-
-    match(imie_zawodnika=fighter_name, kraj_pochodzenia=fighter_country)
+def saving_to_json(new_dict):
+    with open('pliki8_data.json', 'w') as outfile:
+        json.dump(new_dict, outfile)
 
 
-if __name__ == '__main__':
-    main()
+
+fighter_name = input('podaj nazwisko zawodnika: ')
+fighter_country = input('podaj kraj pochodzenia zawodnika: ')
+
+match(imie_zawodnika=fighter_name, kraj_pochodzenia=fighter_country)
+new_dict = match()
+saving_to_json(new_dict)
+
