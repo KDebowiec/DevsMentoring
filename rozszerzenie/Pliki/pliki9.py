@@ -19,3 +19,4 @@ for i in imdata:
         mtu = i["l1PhysIf"]["attributes"]["mtu"]
         # print fields formatted in columns
         print("{0:50} {1:20} {2:7} {3:6}".format(dn, descr, speed, mtu))
+#TODO do obgadania w chuj bo nic tu nie rozumiem, rozwiązanie z neta

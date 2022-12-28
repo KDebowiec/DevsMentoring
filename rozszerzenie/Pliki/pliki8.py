@@ -7,6 +7,8 @@
 #
 # Następnie zapisz tak utworzony słownik do pliku o nazwie output.json.
 import json
+
+
 def match(**kwargs):
     new_dict = {}
     for element in kwargs:
@@ -17,7 +19,6 @@ def match(**kwargs):
 def saving_to_json(new_dict):
     with open('pliki8_data.json', 'w') as outfile:
         json.dump(new_dict, outfile)
-
 
 
 fighter_name = input('podaj nazwisko zawodnika: ')

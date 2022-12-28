@@ -17,3 +17,28 @@
 # 10.4
 # Podaj długość najdłuższej linii pionowej (czyli ciągu kolejnych pikseli w tej samej kolumnie obrazka),
 # złożonej z pikseli tej samej jasności.
+file = open('pliki10_data.txt', 'r')
+list_of_strings = []
+numbers = []
+
+
+def returning_numbers():
+    text = file.readlines()
+    for line in text:
+        line = line.replace('\n', '')
+        list_ = line.split(' ')
+        list_of_strings.extend(list_)
+
+    for part in list_of_strings:
+        numbers.append(int(part))
+
+    return numbers
+
+
+def max_and_min():
+    print(f'jasność najjaśniejszego pixela to {max(numbers)} a najciemniejszego to {min(numbers)}')
+
+
+returning_numbers()
+max_and_min()
+
