@@ -17,28 +17,39 @@
 # 10.4
 # Podaj długość najdłuższej linii pionowej (czyli ciągu kolejnych pikseli w tej samej kolumnie obrazka),
 # złożonej z pikseli tej samej jasności.
-file = open('pliki10_data.txt', 'r')
-list_of_strings = []
-numbers = []
+the_brightness = None
+the_darkness = None
+with open('pliki10_data.txt', 'r') as file:
+    for line in file:
+        for num in line.split():
+            num = int(num)
 
+            if not (the_brightness and the_darkness):
+                the_brightness = the_darkness = num
 
-def returning_numbers():
-    text = file.readlines()
-    for line in text:
-        line = line.replace('\n', '')
-        list_ = line.split(' ')
-        list_of_strings.extend(list_)
+            if num > the_brightness:
+                the_brightness = num
+            elif num < the_darkness:
+                the_darkness = num
 
-    for part in list_of_strings:
-        numbers.append(int(part))
+    print(f'jasność najjaśniejszego pixela to {the_brightness} a najciemniejszego to {the_darkness}')
 
-    return numbers
-
-
-def max_and_min():
-    print(f'jasność najjaśniejszego pixela to {max(numbers)} a najciemniejszego to {min(numbers)}')
-
-
-returning_numbers()
-max_and_min()
-
+# list_of_strings = []
+# numbers = []
+#
+# with open('pliki10_data.txt', 'r') as file:
+#     def returning_numbers():
+#         text = file.readlines()
+#         for line in text:
+#             line = line.replace('\n', '')
+#             list_ = line.split(' ')
+#             list_of_strings.extend(list_)
+#
+#         for part in list_of_strings:
+#             numbers.append(int(part))
+#
+#         return numbers
+#
+#
+#     returning_numbers()
+#     print(f'jasność najjaśniejszego pixela to {max(numbers)} a najciemniejszego to {min(numbers)}')

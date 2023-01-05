@@ -11,6 +11,7 @@ import json
 
 def match(**kwargs):
     new_dict = {}
+
     for element in kwargs:
         new_dict[kwargs[element]] = element
     return new_dict
@@ -24,7 +25,7 @@ def saving_to_json(new_dict):
 fighter_name = input('podaj nazwisko zawodnika: ')
 fighter_country = input('podaj kraj pochodzenia zawodnika: ')
 
-match(imie_zawodnika=fighter_name, kraj_pochodzenia=fighter_country)
-new_dict = match()
+
+new_dict = match(imie_zawodnika=fighter_name, kraj_pochodzenia=fighter_country)
 saving_to_json(new_dict)
 
