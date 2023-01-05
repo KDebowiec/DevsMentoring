@@ -10,7 +10,7 @@ list_of_lines = []
 def lines():
     text = file.readlines()
     for line in text:
-        line = line.replace('\n', '')
+        line = line.rstrip()
         list_ = line.split(' ')
         list_of_lines.append(list_)
     return list_of_lines

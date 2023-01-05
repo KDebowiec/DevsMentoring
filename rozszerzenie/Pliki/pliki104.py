@@ -2,13 +2,12 @@
 # złożonej z pikseli tej samej jasności.
 file = open('pliki10_data.txt', 'r')
 list_of_lines = []
-verticals_list = []
 
 
 def lines():
     text = file.readlines()
     for line in text:
-        line = line.replace('\n', '')
+        line = line.rstrip()
         list_ = line.split(' ')
         numbers = []
         for element in list_:
@@ -18,26 +17,22 @@ def lines():
     return list_of_lines
 
 
-def contrasting_in_column(list_of_lines):
-    previous_pixel_brightness = None
-    current_length = 0
-    max_length = 0
-    for line in range(199):
-        for pixel_brightness in range(320):
-            if pixel_brightness == previous_pixel_brightness:
-                current_length += 1
+def longest_vertical_line(list_of_lines):
+    longest_line = 0
+    for col in range(320):
+        current_line_length = 1
+        for row in range(1, 200):
+            if list_of_lines[row][col] == list_of_lines[row - 1][col]:
+                current_line_length += 1
             else:
-                max_length = max(max_length, current_length)
-                current_length = 1
-                previous_pixel_brightness = pixel_brightness
-    max_length = max(max_length, current_length)
-    print(max_length)
+                longest_line = max(longest_line, current_line_length)
+                current_line_length = 1
+
+        longest_line = max(longest_line, current_line_length)
+    print(longest_line)
+    return longest_line
 
 
-contrasting_in_column(list_of_lines)
-            # if abs(list_of_lines[line][element] - list_of_lines[line + 1][element]) > 128:
-            #     if [line, element] not in list_of_pairs:
-            #         list_of_pairs.append([line, element])
-            #     if [line + 1, element] not in list_of_pairs:
-            #         list_of_pairs.append([line + 1, element])
-#TODO problem error not found
+lines()
+longest_vertical_line(list_of_lines)
+file.close()

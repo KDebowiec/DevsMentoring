@@ -11,7 +11,7 @@ list_of_pairs = []
 def lines():
     text = file.readlines()
     for line in text:
-        line = line.replace('\n', '')
+        line = line.rstrip()
         list_ = line.split(' ')
         numbers = []
         for element in list_:
