@@ -2,7 +2,6 @@
 # Sąsiednie piksele to takie, które leżą obok siebie w tym samym wierszu lub w tej samej kolumnie.
 # Dwa sąsiednie piksele nazywamy kontrastującymi, jeśli ich wartości różnią się o więcej niż 128.
 # Podaj liczbę wszystkich takich pikseli, dla których istnieje przynajmniej jeden kontrastujący z nim sąsiedni piksel.
-
 file = open('pliki10_data.txt', 'r')
 list_of_lines = []
 list_of_pairs = []

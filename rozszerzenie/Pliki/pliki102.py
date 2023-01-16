@@ -29,3 +29,4 @@ list_of_lines = lines()
 axis_of_symmetry(list_of_lines)
 
 print(f'najmniejsza liczba wierszy, które należy usunąć wynosi {axis_of_symmetry(list_of_lines)}')
+file.close()
