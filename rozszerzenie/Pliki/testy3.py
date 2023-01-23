@@ -1,25 +1,48 @@
 with open('pliki10_data.txt', 'r') as file:
-    lines = []
-    result = set()
+    list_of_lines = []
 
-    for i in range(2):
-        line = file.readline()
-        lines.append(line.split())
 
-    while line:
-        for line in file:
-            for i in range(2):
-                for j in range(len(lines[0]) - 1):
-                    if abs(int(lines[i][j]) - int(lines[i][j + 1])) > 128:
-                        result.add((i, j))
-                        result.add((i, j + 1))
+    def lines():
+        text = file.readlines()
+        for line in text:
+            line = line.rstrip()
+            list_ = line.split(' ')
+            numbers = []
+            for element in list_:
+                element = int(element)
+                numbers.append(element)
+            list_of_lines.append(numbers)
+        return list_of_lines
 
-            for j in range(len(lines[0])):
-                if abs(int(lines[0][j]) - int(lines[1][j])) > 128:
-                    result.add((0, j))
-                    result.add((1, j))
-            lines.reverse()
-            lines[1] = line.split()
-        line = 0
 
-    print(len(result))
+    def longest_vertical_line(list_of_lines):
+        longest_line = 0
+        current_line_length = 1
+        for row in range(200):
+            for col in range(320):
+                if list_of_lines[row][col] == list_of_lines[row - 1][col]:
+                    current_line_length += 1
+                elif longest_line == current_line_length:
+                    current_line_length = 1
+                elif longest_line < current_line_length:
+                    longest_line = current_line_length
+                elif longest_line > current_line_length:
+                    current_line_length = 1
+
+        print(longest_line)
+        return longest_line
+
+
+    lines()
+    longest_vertical_line(list_of_lines)
+    file.close()
+
+# for i in range(len(lines)):
+#     for j in range(len(lines[0])):
+#         if lines[i][j] == lines[i+1][j]:
+#             current_line_length += 1
+#         elif longest_line < current_line_length:
+#             longest_line = current_line_length
+#             current_line_length = 1
+#         elif longest_line > current_line_length:
+#             current_line_length = 1

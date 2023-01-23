@@ -1,38 +1,29 @@
 # Podaj długość najdłuższej linii pionowej (czyli ciągu kolejnych pikseli w tej samej kolumnie obrazka),
 # złożonej z pikseli tej samej jasności.
 with open('pliki10_data.txt', 'r') as file:
-    list_of_lines = []
+    lines = []
+    longest_line = 0
+    current_line_length = 0
 
+    for i in range(2):
+        line = file.readline()
+        lines.append(line.split())
 
-    def lines():
-        text = file.readlines()
-        for line in text:
-            line = line.rstrip()
-            list_ = line.split(' ')
-            numbers = []
-            for element in list_:
-                element = int(element)
-                numbers.append(element)
-            list_of_lines.append(numbers)
-        return list_of_lines
-
-
-    def longest_vertical_line(list_of_lines):
-        longest_line = 0
-        for col in range(320):
-            current_line_length = 1
-            for row in range(1, 200):
-                if list_of_lines[row][col] == list_of_lines[row - 1][col]:
+    while line:
+        for line in file:
+            for j in range(len(lines[0])):
+                if lines[0][j] == lines[1][j]:
                     current_line_length += 1
-                else:
-                    longest_line = max(longest_line, current_line_length)
+                    lines.reverse()
+                    line = file.readline()
+                    lines[1] = line.split()
+                elif longest_line < current_line_length:
+                    longest_line = current_line_length
                     current_line_length = 1
+                elif longest_line > current_line_length:
+                    current_line_length = 1
+            lines.reverse()
+            lines[1] = line.split()
 
-            longest_line = max(longest_line, current_line_length)
-        print(longest_line)
-        return longest_line
-
-
-    lines()
-    longest_vertical_line(list_of_lines)
-    file.close()
+        line = 0
+    print(longest_line)
