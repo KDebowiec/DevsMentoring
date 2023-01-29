@@ -12,4 +12,4 @@ class Student:
 
 
 karol = Student("Karol", 4, "AGH", "Automatyka")
-print(karol.print_info())
+karol.print_info()

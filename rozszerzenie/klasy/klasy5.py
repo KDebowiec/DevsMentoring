@@ -12,11 +12,41 @@ import random
 
 
 class Deck:
-    list_of_figures = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Walet', 'Dama', 'Król', 'As']
-    list_of_colors = ['Trefl', 'Karo', 'Kier', 'Pik']
+    def __init__(self):
+        self.cards = []
+        self.list_of_figures = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'Walet', 'Dama', 'Król', 'As']
+        self.list_of_colors = ['Trefl', 'Karo', 'Kier', 'Pik']
+
+        self._populate_deck()
+
+    def _populate_deck(self):
+        for color in self.list_of_colors:
+            for figure in self.list_of_figures:
+                card = Card(color, figure)
+                self.cards.append(card)
+
+    def shuffle(self):
+        run = True
+
+        while run:
+            choice = int(input("żeby przetasować talię, wciśnij 1: "))
+            if choice == 1:
+                new_deck = random.shuffle(self.cards)
+                for card in deck.cards:
+                    print(card)
+
+    def deal(self):
+        pass
 
 
 class Card:
-    def __init__(self, value, figure):
-        self.value = value
+    def __init__(self, color, figure):
+        self.color = color
         self.figure = figure
+
+    def __str__(self):
+        return f"{self.figure} {self.color}"
+
+
+deck = Deck()
+new_deck = deck.shuffle()

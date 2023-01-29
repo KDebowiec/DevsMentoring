@@ -9,7 +9,7 @@
 # Napisz metodę change_ownership(), która przyjmować będzie imię nowego właściciela konta i będzie aplikowała
 # tę zmianę w obiekcie klasy.
 # Stwórz metodę display(), która będzie wyświetlać wszystkie informacje o koncie.
-import sys
+
 
 
 class Account:
@@ -44,7 +44,7 @@ account = Account(23456765432345, "Karol", 1000000)
 
 run = True
 
-while run:
+while run: # wrzucić do metody w klasie
     print("wprowadź 1 aby wpłacić pieniądze na konto: ")
     print("wprowadź 2 aby wypłacić pieniądze: ")
     print("wprowadź 3 aby zmienić właściciela: ")
@@ -61,4 +61,4 @@ while run:
     elif choice == 4:
         account.display()
     elif choice == 5:
-        sys.exit()
+        run = False
