@@ -32,8 +32,7 @@ class Deck:
             choice = int(input("żeby przetasować talię, wciśnij 1: "))
             if choice == 1:
                 new_deck = random.shuffle(self.cards)
-                for card in deck.cards:
-                    print(card)
+                print(deck.cards)
 
     def deal(self):
         pass
@@ -46,6 +45,9 @@ class Card:
 
     def __str__(self):
         return f"{self.figure} {self.color}"
+
+    def __repr__(self):
+        return self.__str__()
 
 
 deck = Deck()

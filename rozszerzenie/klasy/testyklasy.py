@@ -30,7 +30,5 @@
 #         self.id = id(Order)
 #         self.name = name
 #         self.price = price
-import datetime
-
-x = datetime.datetime.now()
-print(x)
+listX = [2, 3, 6, 8]
+print(listX.index(3))
