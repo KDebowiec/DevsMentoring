@@ -30,5 +30,19 @@
 #         self.id = id(Order)
 #         self.name = name
 #         self.price = price
-listX = [2, 3, 6, 8]
-print(listX.index(3))
+test_dict = {'name': {'capacity': 'capacity', 'volume': 0}, 'namgffe': {'capadhgfcity': 'capadhcity', 'volume': 'vofglume'}, 'nafgme': {'capadfhcity': 'capadfhcity', 'volume': 'vofdhglume'}}
+second_dict = []
+for name in test_dict:
+    for volume in test_dict[name]['volume']:
+        if volume == 0:
+            second_dict.append(test_dict[name]['volume'])
+print(second_dict)
+
+# for name, capacity in test_dict.items():
+#     print(name, capacity['volume'])
+#
+# for name in test_dict:
+#     second_dict.update({name: test_dict[name]['volume']})
+# print(second_dict)
+prefiks = {'karol': 12, 'przemek': 123, 'konrerthgtrergfad': 8}
+print(max(prefiks))

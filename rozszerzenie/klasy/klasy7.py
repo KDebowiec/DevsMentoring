@@ -15,7 +15,7 @@ import datetime
 
 class Notebook:
     def __init__(self):
-        self.notes = []
+        self.notes = {}
         self.menu()
 
     def menu(self):
@@ -38,26 +38,22 @@ class Notebook:
     def add_note(self):
         author = input('kto jest autorem: ')
         content = input('treść: ')
-        note_id = 1
-        for i in self.notes:
-            note_id += 1
+        note_id = int(input('Podaj id:'))
         new_note = Note(author, content, note_id)
-        self.notes.append(new_note)
+        self.notes.update({note_id: new_note})
 
     def delete_note(self):
         if len(self.notes):
             print(self.notes)
             which = int(input('którą notatkę chcesz usunąć, podaj id: '))
-            element = self.notes[which+1] #To nie tak ma być
-            index_to_delete = self.notes.index(element)
-            self.notes.pop(index_to_delete)
+            self.notes.pop(which)
 
     def check_length(self):
         print(f'liczba notatek: {len(self.notes)}')
 
     def show_notes(self):
         print('Twoje notatki: ')
-        for i in self.notes:
+        for i in self.notes.items():
             print(i)
 
 
@@ -69,7 +65,7 @@ class Note:
         self.note_id = note_id
 
     def __repr__(self):
-        return f'{self.author}: {self.content}, {self.time}, id notatki: {self.note_id}'
+        return f'autor: {self.author}, notatka: {self.content},czas dodania: {self.time}'
 
 
 Notebook()
