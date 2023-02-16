@@ -113,11 +113,6 @@ class Tanks:
                 print(f'{name} ma najwięcej wody')
                 return name
 
-        # max_volume = max(tanks_volume)
-        # tanks_vols[max_volume]
-        # for tank, tank_values in tank_dict.items():
-        #     if max_volume == tank_values[volume]:
-        #         return tank
 
     def fullest_tank(self):
         tanks_and_vols = {}
