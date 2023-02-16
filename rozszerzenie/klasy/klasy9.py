@@ -204,8 +204,12 @@ class Tanks:
             for dict_ in EVENT_LOG:
                 for i in dict_:
                     if dict_[i]['succes']:
-                        f'dict_[i][]'
-
+                        print(dict_)
+        elif operation == 3:
+            for dict_ in EVENT_LOG:
+                for i in dict_:
+                    if not dict_[i]['succes']:
+                        print(dict_)
 
 
 class Tank:
