@@ -36,28 +36,41 @@
 #    3. Exit
 
 class Manager:
+    def __init__(self):
+        self.start()
 
     def start(self):
-        pass
-        #metoda wywoływana jako pierwsza z poziomu main, chuj wie
+        Manager.show_menu(self)
 
     def show_menu(self):
-        pass
+        Menu()
         # odwołanie do klasy menu i wywołanie metody show
+
+    def execute(self, choice):
+        if choice == 1:
+            Note.add_note()
+        if choice == 2:
+            Card.add_card()
+        if choice == 3:
+            pass
 
 
 class Menu:
+    def __init__(self):
+        self.show()
 
     def show(self):
-        print('1. Dodaj notatkę')
-        print('2. Dodaj Wizytówkę')
-        print('3. Wyświetl notatki')
-        print('4. Wyświetl Wizytówki')
-        print('5. Wyjdź')
+
+
+            print('1. Dodaj notatkę')
+            print('2. Dodaj Wizytówkę')
+            print('3. Wyświetl notatki')
+            print('4. Wyświetl Wizytówki')
+            print('5. Wyjdź')
+            self.get_choice()
 
     def get_choice(self):
-        choice = int(input())
-        return choice
+        Manager.execute(choice=int(input("wybierz z menu: ")), )
 
 
 class Card:
@@ -75,4 +88,5 @@ class Note:
     def add_note(self):
         pass
 
-Manager.start()
+
+Manager()
