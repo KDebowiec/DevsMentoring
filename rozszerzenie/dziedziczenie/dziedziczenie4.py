@@ -35,50 +35,13 @@
 #    2. SubManager_2 -> Menu (add_card, show_list)
 #    3. Exit
 
-class Manager:
-    def __init__(self):
-        self.start()
-
-    def start(self):
-        Manager.show_menu(self)
-
-    def show_menu(self):
-        Menu()
-        # odwołanie do klasy menu i wywołanie metody show
-
-    def execute(self, choice):
-        if choice == 1:
-            Note.add_note()
-        if choice == 2:
-            Card.add_card()
-        if choice == 3:
-            pass
-
-
-class Menu:
-    def __init__(self):
-        self.show()
-
-    def show(self):
-
-
-            print('1. Dodaj notatkę')
-            print('2. Dodaj Wizytówkę')
-            print('3. Wyświetl notatki')
-            print('4. Wyświetl Wizytówki')
-            print('5. Wyjdź')
-            self.get_choice()
-
-    def get_choice(self):
-        Manager.execute(choice=int(input("wybierz z menu: ")), )
-
-
 class Card:
     def __init__(self):
         self.list_of_cards = []
 
     def add_card(self):
-        pass
+        card = input('wpisz wizytówkę: ')
+        self.list_of_cards.append(card)
 
 
 class Note:
@@ -86,7 +49,51 @@ class Note:
         self.list_of_notes = []
 
     def add_note(self):
-        pass
+        note = input('wpisz notatkę: ')
+        self.list_of_notes.append(note)
+
+
+class Menu:
+
+    def __init__(self):
+        self.show()
+
+    def show(self):
+        print('1. Dodaj notatkę')
+        print('2. Dodaj Wizytówkę')
+        print('3. Wyświetl notatki')
+        print('4. Wyświetl Wizytówki')
+        print('5. Wyjdź')
+        self.get_choice()
+
+    def get_choice(self):
+        choice = int(input("wybierz z menu: "))
+        self.execute(self, choice)
+
+
+class Manager:
+    def __init__(self):
+        super().__init__()
+        self.start()
+
+    def start(self):
+        Manager.show_menu(self)
+
+    def show_menu(self):
+        Menu()
+
+    def execute(self, choice):
+
+        if choice == 1:
+            Note.add_note()
+        if choice == 2:
+            Card.add_card()
+        if choice == 3:
+            print(list_of_notes)
+        if choice == 4:
+            print(list_of_cards)
+        if choice == 5:
+            exit()
 
 
 Manager()
