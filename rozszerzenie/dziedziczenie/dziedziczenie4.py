@@ -44,6 +44,7 @@ class Menu:
     def show(self):
         for menu_choice, menu_item in self.__dict__.items():
             print(menu_choice, menu_item)
+        self.get_choice()
 
     def get_choice(self):
         user_input = input('Wybierz numer:')
@@ -52,10 +53,13 @@ class Menu:
 
 
 class Manager(Menu):
-    def __init__(self, menu):
+    def __init__(self, menu, managers_dict={}):
+        self.managers_list = managers_dict
+        self.managers_list[self.__class__.__name__] = self
         super().__init__(**menu)
 
     def execute(self, choice):
+        print(f'Managery {self.managers_list}')
         if choice == 1:
             NoteManager(note_menu)
         if choice == 2:
@@ -72,6 +76,7 @@ class NoteManager(Manager):
     def add_note(self):
         note = input('Wpisz notatkę: ')
         self.list_of_notes.append(note)
+        self.show()
 
     def execute(self, choice):
         if choice == 1:
@@ -79,6 +84,10 @@ class NoteManager(Manager):
         if choice == 2:
             for i in self.list_of_notes:
                 print(i)
+            self.show()
+        if choice == 3:
+            manager_choice = input(f'Wpisz nazwę managera do przejścia (dostępne: {list(self.managers_list.keys())}):')
+            self.managers_list[manager_choice].show()
 
 
 class CardManager(Manager):
@@ -89,6 +98,7 @@ class CardManager(Manager):
     def add_card(self):
         card = input('Wpisz wizytówkę: ')
         self.list_of_cards.append(card)
+        self.show()
 
     def execute(self, choice):
         if choice == 1:
@@ -96,9 +106,11 @@ class CardManager(Manager):
         if choice == 2:
             for i in self.list_of_cards:
                 print(i)
+        if choice == 3:
+            manager_choice = input(f'Wpisz nazwę managera do przejścia (dostępne: {list(self.managers_list.keys())}):')
+            self.managers_list[manager_choice].show()
 
-
-note_menu = {'1': 'Dodaj notatkę', '2': 'Wyświetl wszystko'}
-card_menu = {'1': 'Dodaj wizytówkę', '2': 'Wyświetl wszystko'}
+note_menu = {'1': 'Dodaj notatkę', '2': 'Wyświetl wszystko', '3': 'Przełącz managera'}
+card_menu = {'1': 'Dodaj wizytówkę', '2': 'Wyświetl wszystko', '3': 'Przełącz managera'}
 tmp_menu = {'1': 'Manager notatek', '2': 'Manager Wizytówek', '3': 'Wyjdź'}
 Manager(tmp_menu)
