@@ -34,6 +34,7 @@
 #    1. SubManager_1 -> Menu (add_card, show_list)
 #    2. SubManager_2 -> Menu (add_card, show_list)
 #    3. Exit
+
 class Menu:
     def __init__(self, **kwargs):
         for menu_choice, menu_item in kwargs.items():
@@ -54,15 +55,19 @@ class Menu:
 
 
 class Manager(Menu):
-    def __init__(self, menu):
+    def __init__(self, menu, managers_dict={}):
+        self.manager_list = managers_dict
+        self.manager_list[self.__class__.__name__] = self
         super().__init__(**menu)
 
     def execute(self, choice):
+        print(f'Managery {self.manager_list}')
         if choice == 1:
             NoteManager(note_menu)
 
         if choice == 2:
             CardManager(card_menu)
+
         if choice == 3:
             exit()
 
@@ -84,6 +89,9 @@ class NoteManager(Manager):
             for i in self.list_of_notes:
                 print(i)
             self.show()
+        if choice == 3:
+            manager_choice = input(f'Wpisz nazwę managera do przejścia (dostępne: {list(self.manager_list.keys())}):')
+            self.manager_list[manager_choice].show()
 
 
 class CardManager(Manager):
@@ -102,8 +110,13 @@ class CardManager(Manager):
         if choice == 2:
             for i in self.list_of_cards:
                 print(i)
-        self.show()
-note_menu = {'1': 'Dodaj notatkę', '2': 'Wyświetl wszystko'}
-card_menu = {'1': 'Dodaj wizytówkę', '2': 'Wyświetl wszystko'}
+            self.show()
+        if choice == 3:
+            manager_choice = input(f'Wpisz nazwę managera do przejścia (dostępne: {list(self.manager_list.keys())}):')
+            self.manager_list[manager_choice].show()
+
+
+note_menu = {'1': 'Dodaj notatkę', '2': 'Wyświetl wszystko', '3': 'Przełącz managera'}
+card_menu = {'1': 'Dodaj wizytówkę', '2': 'Wyświetl wszystko', '3': 'Przełącz managera'}
 tmp_menu = {'1': 'Manager notatek', '2': 'Manager Wizytówek', '3': 'Wyjdź'}
 Manager(tmp_menu)
