@@ -102,7 +102,7 @@ class ShopDataBase(Manager):
             self.show()
         if choice == 3:
             user = None
-            self.manager_list[manager_choice].show()
+            self.manager_list['Manager'].show()
         if choice == 4:
             if user == 'Admin':
                 self.delete_product()
