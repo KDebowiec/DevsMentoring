@@ -18,16 +18,19 @@
 # - dodaj produkt
 # - usuń produkt
 
-
 class ShopItem:
 
-    def __init__(self, types, name, size):
-        self.types = types
+    def __init__(self, name, size):
         self.name = name
         self.size = size
 
+
+class Category(ShopItem):
+    def __init__(self, name, size):
+        super.__init__(name, size)
+        self.list_of_
     def __str__(self):
-        return f'typ produktu: {self.types}, nazwa: {self.name}, rozmiar: {self.size}'
+        return f'nazwa: {self.name}, rozmiar: {self.size}'
 
     def __repr__(self):
         return self.__str__()
@@ -41,7 +44,6 @@ class Menu:
         self.get_choice()
 
     def show(self):
-
         for menu_choice, menu_item in self.__dict__.items():
             print(menu_choice, menu_item)
         self.get_choice()
@@ -54,14 +56,14 @@ class Menu:
 
 class Manager(Menu):
 
-    def __init__(self, menu, managers_dict={}):
+    def __init__(self, menu, user=None, managers_dict={}):
+        self.user = user
         self.manager_list = managers_dict
         self.manager_list[self.__class__.__name__] = self
         super().__init__(**menu)
 
     def execute(self, choice):
         if choice == 1:
-            user = input('podaj login: ')
             if user == 'Admin':
                 ShopDataBase(admin_menu)
             else:
@@ -71,7 +73,8 @@ class Manager(Menu):
 class ShopDataBase(Manager):
     def __init__(self, menu):
         self.products = {}
-        super().__init__(menu)
+        user = input('Jesteś admin?')
+        super().__init__(menu, user)
 
     def add_product(self):
         name = input('podaj nazwę: ')
@@ -79,14 +82,12 @@ class ShopDataBase(Manager):
         types = input('wybierz typ: ciuchy, suplementy, buty: ')
         new_product = ShopItem(name, size, types)
         id_ = id(new_product)
-        self.products.update({name: {'rozmiar': size, 'typ': types, 'id': id_}})
+        self.products.update({id_: {'nazwa': name, 'rozmiar': size, 'typ': types}})
         self.show()
 
     def delete_product(self):
-        chosed = int(input('podaj id produktu który chcesz usunąć: '))
-        for name in self.products:
-            if self.products[name]['id'] == chosed:
-                self.products.pop(name)
+        chosen = int(input('podaj id produktu który chcesz usunąć: '))
+        self.products.pop(chosen)
         self.show()
 
     def print_products(self):
@@ -101,18 +102,22 @@ class ShopDataBase(Manager):
             self.add_product()
             self.show()
         if choice == 3:
-            user = None
+            self.user = None
             self.manager_list['Manager'].show()
         if choice == 4:
-            if user == 'Admin':
+            if self.user == 'Admin':
                 self.delete_product()
                 self.show()
             else:
                 print('nie masz takich uprawnień')
 
+#owner = ShopWorker(owner=True, first_name='Karol')
+#worker = ShopWorker(owner=False, first_name='Paweł')
 
 admin_menu = {'1': 'Lista produktów', '2': 'dodaj produkt', '3': 'wyloguj', '4': 'usuń produkt'}
 user_menu = {'1': 'Lista produktów', '2': 'dodaj produkt', '3': 'wyloguj'}
 not_logged_menu = {'1': 'zaloguj'}
 
-Manager(not_logged_menu)
+user = input('podaj login: ')
+Manager(not_logged_menu, user)
+

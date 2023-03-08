@@ -43,7 +43,6 @@ class Menu:
         self.get_choice()
 
     def show(self):
-
         for menu_choice, menu_item in self.__dict__.items():
             print(menu_choice, menu_item)
         self.get_choice()
