@@ -60,20 +60,3 @@ for dict_ in FAILED_OPERATIONS:
         if dict_[i]['succes']:
             print(dict_)
 
-# for dict_ in FAILED_OPERATIONS:
-#     if 'zbiornik1' in dict_:
-#         if dict_["zbiornik1"]["operation_name"] == 'pour':
-#             print('typ operacji: dolewanie wody do zbiornika')
-#         elif dict_["zbiornik1"]["operation_name"] == 'pour_out_water':
-#             print('odlewanie wody ze zbiornika')
-#         elif dict_["zbiornik1"]["operation_name"] == 'add_tank':
-#             print('dodawanie zbiornika')
-#         print (f'data i czas: {dict_["zbiornik1"]["time"]}, '
-#               f'ilość wody: {dict_["zbiornik1"]["ilość wody"]}, ')
-#         if dict_["zbiornik1"]["succes"]:
-#             print('operacja zakończona sukcesem')
-#         else:
-#             print('operacja nieudana')
-
-# Dla każdej operacji pamiętamy: datę i czas jej wykonania, jej nazwę, zbiornik, na którym była ona wykonana
-# oraz ilość wody, jaka była brana pod uwagę oraz to, czy operacja się powiodła czy nie.
