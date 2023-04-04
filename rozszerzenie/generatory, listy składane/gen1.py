@@ -4,24 +4,22 @@
 import random
 
 
-def generate_anything():
-    while True:
-
-        number = random.randint(1, 1000)
-        yield number
-
-
-generator = generate_anything()
-
-for i in range(5):
-    print(next(generator))
+# def generate_anything():
+#     while True:
+#
+#         number = random.randint(1, 1000)
+#         yield number
+#
+#
+# generator = generate_anything()
+#
+# for i in range(5):
+#     print(next(generator))
 
 # ----------------------------------------
 
 
 class Generate:
-    def __init__(self, amount):
-        self.amount = amount
 
     def __iter__(self):
         return self
@@ -29,10 +27,12 @@ class Generate:
     def __next__(self):
         while True:
             number = random.randint(1, 1000)
-            print(number)
             return number
 
 
 generate = Generate()
 
+for i in range(5):
+    print(next(generate))
 
+# użyć metody send i throw w klasie generatora, żeby na podstawie wartości send rzucić wyjątkiem
