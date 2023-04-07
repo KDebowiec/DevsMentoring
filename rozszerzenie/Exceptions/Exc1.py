@@ -11,13 +11,17 @@
 # Dodatkowe warunki:
 # Wartość noConnector nie może przekroczyć wartości 10
 # maxFileSize musi być zawsze liczbą czterocyfrową
-file = open(test.txt, 'r')
+file = open('test.txt', 'r')
+
+
 class FileHandler:
 
     def __init__(self, file_path, no_connectors, max_file_size):
         self.__file_path = file_path
         self.__no_connectors = no_connectors
         self.__max_file_size = max_file_size
+        self.read_content()
+        self.save_to_file()
 
     def set_path(self, file_path):
         self.__file_path = file_path
@@ -29,9 +33,43 @@ class FileHandler:
         self.__max_file_size = max_file_size
 
     def read_content(self):
-        print('read content')
+        if self.__no_connectors > 10:
+            raise SmallerThan10(self.__no_connectors)
+        else:
+         print('read content')
+
 
     def save_to_file(self):
-        print('save to file')
+        if self.__max_file_size < 999:
+            raise MinSize(self.__max_file_size)
+        elif self.__max_file_size > 9999:
+            raise MaxSize(self.__max_file_size)
+        else:
+         print(f'save to{self.__file_path} file')
 
-dupa = FileHandler()
+
+class SmallerThan10(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return f"Typed value of noConnector - {self.value} is bigger than 10!"
+
+
+class MaxSize(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return f"file size {self.value} is too big!"
+
+
+class MinSize(Exception):
+    def __init__(self, value):
+        self.value = value
+
+    def __str__(self):
+        return f"file size {self.value} is too small!"
+
+
+dupa = FileHandler(file, 11, 666)
