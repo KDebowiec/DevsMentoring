@@ -28,10 +28,13 @@ def printUpperFile(fileName):
         file = open(fileName, "r")
     except FileNotFoundError:
         print('there is no such h file in this directory')
-    for line in file:
-        print(line.upper())
-    file.close()
 
+    try:
+        for line in file:
+            print(line.upper())
+        file.close()
+    except UnboundLocalError:
+        print('file is not associated with value')
 
 def main():
     example1()
