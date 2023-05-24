@@ -13,7 +13,7 @@
 import re
 
 color = input ('wpisz: ')
-if re.match('(#[a-zA-Z0-9]{3})', color) or re.match('(#[a-zA-Z0-9]{6})', color):
+if re.match('(#[a-zA-Z0-9]{3}|[a-zA-Z0-9]{6})', color):
     print('git')
 else:
     print('nie')

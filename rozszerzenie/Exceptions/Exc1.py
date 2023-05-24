@@ -36,8 +36,7 @@ class FileHandler:
         if self.__no_connectors > 10:
             raise SmallerThan10(self.__no_connectors)
         else:
-         print('read content')
-
+            print('read content')
 
     def save_to_file(self):
         if self.__max_file_size < 999:
@@ -45,7 +44,7 @@ class FileHandler:
         elif self.__max_file_size > 9999:
             raise MaxSize(self.__max_file_size)
         else:
-         print(f'save to{self.__file_path} file')
+            print(f'save to{self.__file_path} file')
 
 
 class SmallerThan10(Exception):
@@ -73,3 +72,16 @@ class MinSize(Exception):
 
 
 dupa = FileHandler(file, 11, 666)
+
+new_dict = {}
+
+new_dict['dupa'] = 'nic'
+
+new_list = []
+for element in new_dict:
+    new_list.append(new_dict[element])
+
+new_list = [new_dict[element] for element in new_dict]
+
+
+

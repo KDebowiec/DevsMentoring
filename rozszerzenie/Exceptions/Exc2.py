@@ -5,12 +5,12 @@ def example1():
         try:
             print(x, '/', y, '=', x / y)
         except ZeroDivisionError:
-            print('Cant Divide')
+            print('Cant Divide by 0')
 
 
 def example2(L):
     print("\n\nExample 2")
-    sum = 0
+    summary = 0
     sumOfPairs = []
     try:
         for i in range(len(L)):
@@ -23,11 +23,18 @@ def example2(L):
     print("sumOfPairs = ", sumOfPairs)
 
 
-def printUpperFile(fileName):
+def print_upper_file(fileName):
     try:
         file = open(fileName, "r")
     except FileNotFoundError:
         print('there is no such h file in this directory')
+    else:
+        print('else')
+    finally:
+        print('finally')
+
+
+
 
     try:
         for line in file:
@@ -36,15 +43,17 @@ def printUpperFile(fileName):
     except UnboundLocalError:
         print('file is not associated with value')
 
+
 def main():
     example1()
     L = [10, 3, 5, 6, 9, 3]
     example2(L)
     example2([10, 3, 5, 6, "NA", 3])
 
-    printUpperFile("doesNotExistYest.txt")
-    printUpperFile("./Dessssktop/misspelled.txt")
+    print_upper_file("doesNotExistYest.txt")
+    print_upper_file("./Dessssktop/misspelled.txt")
 
 
 if __name__ == '__main__':
     main()
+
