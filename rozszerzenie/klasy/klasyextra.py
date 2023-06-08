@@ -33,15 +33,15 @@ class BookmarkAccount(BankAccount):
         self.account_balance += self.account_balance*self.interest
         print(self.account_balance)
 
-#
-# account = BankAccount(120)
-# bookmark_account = BookmarkAccount(account_balance=100)
-#
-# account.deposit()
-# account.withdraw(100)
-# print(account.balance)
-#
-# bookmark_account.charge_interest_amount()
-# bookmark_account.deposit()
-# bookmark_account.charge_interest_amount()
-#
+
+account = BankAccount(120)
+bookmark_account = BookmarkAccount(account_balance=100)
+
+account.deposit()
+account.withdraw(100)
+print(account.balance)
+
+bookmark_account.charge_interest_amount()
+bookmark_account.deposit()
+bookmark_account.charge_interest_amount()
+
