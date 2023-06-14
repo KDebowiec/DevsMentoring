@@ -90,6 +90,8 @@ def menu():
             print(list_of_vehicless)
         elif choice == 4:
             show_vehicles()
+        elif choice == 5:
+            run = False
 
 
 def add_bus():
@@ -134,6 +136,3 @@ def show_vehicles():
     print(choice)
     if choice in list_of_depots:
         print(choice.list_of_vehicles)
-
-
-menu()

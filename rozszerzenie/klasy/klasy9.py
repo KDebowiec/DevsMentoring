@@ -217,3 +217,6 @@ class Tank:
         self.name = name
         self.capacity = capacity
         self.volume = volume
+
+# tanki = Tanks()
+# tanki.menu()

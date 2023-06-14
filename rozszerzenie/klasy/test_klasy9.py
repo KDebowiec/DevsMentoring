@@ -7,10 +7,23 @@ def tanks_instance(mocker):
     mocker.patch('builtins.input', return_value='8')
     return klasy9.Tanks()
 
-@pytest.fixture()
+@pytest.fixture
 def tanks_all_operations(mocker):
     mocker.patch('builtins.input', return_value='9')
     return klasy9.Tanks()
+
+
+@pytest.fixture
+def mocking_event_log(mocker):
+    mocker.patch('klasy9.EVENT_LOG', [])
+
+
+@pytest.fixture
+def mocking_event_log_full(mocker):
+    mocker.patch('klasy9.EVENT_LOG', [{'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': True}},
+             {'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': False}}])
+
+
 
 
 def test_add_tank(tanks_instance, mocker):
@@ -68,14 +81,14 @@ def test_all_empty_tanks(tanks_instance):
     assert not tanks_instance.all_empty_tanks()
 
 
-def test_show_events_all(tanks_instance, mocker, capsys):
+def test_show_events_zbiornik1(tanks_instance, mocker, capsys, mocking_event_log):
     mocker.patch('builtins.input', side_effect=[1, 'zbiornik1'])
     tanks_instance.show_events()
     captured = capsys.readouterr()
-    assert captured.out.strip() == 'typ operacji: dolewanie wody do zbiornika\n'\
-                                   'data i czas: 12, ilość wody: 400, \n'\
-                                   'operacja zakończona sukcesem\n'\
-                                   'typ operacji: dolewanie wody do zbiornika\n'\
-                                   'data i czas: 12, ilość wody: 400, \n'\
-                                   'operacja nieudana\n'\
+    assert captured.out.strip() == ''
 
+
+def test_show_events_succes(tanks_instance, mocker, mocking_event_log_full):
+    mocker.patch('builtins.input', res=2)
+    x = tanks_instance.show_events()
+    assert x == {'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': True}}
