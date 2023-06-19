@@ -25,15 +25,20 @@ def test_add_bus(menu_instance, mocker):
     testExtra1.add_bus()
     assert len(testExtra1.list_of_vehicless) == 1
 
-# def test_add_tram():
-#     add_tram()
-#     assert len(list_of_vehicless) == 1
-#     assert isinstance(list_of_vehicless[0], Tram)
-#
-# def test_add_bus_depot():
-#     add_bus_depot()
-#     assert len(list_of_depots) == 1
-#     assert isinstance(list_of_depots[0], BusDepot)
+
+@patch('testExtra1.TramDepot')
+def test_add_tram(menu_instance, mocker):
+    mocker.patch('testExtra1.list_of_depots', ['tram_depot'])
+    mocker.patch('builtins.input', side_effect=[100, 10, 'tram_depot', 10])
+    testExtra1.add_tram()
+    assert len(testExtra1.list_of_vehicless) == 2
+
+
+def test_add_bus_depot(menu_instance, mocker):
+    mocker.patch('testExtra1.list_of_depots', [])
+    mocker.patch('builtins.input', side_effect=['bus_stop', 'zajezdnia autobusowa'])
+    testExtra1.add_bus_depot()
+    assert bus_stop in testExtra1.list_of_depots
 #
 # def test_add_tram_depot():
 #     add_tram_depot()
