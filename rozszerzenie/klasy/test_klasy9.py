@@ -70,11 +70,11 @@ def test_transfer_water(tanks_instance, mocker):
     assert len(klasy9.EVENT_LOG) == 2
 
 def test_tank_with_most_water(tanks_instance):
-    assert 'zbiornik3 ma najwięcej wody'
+    assert tanks_instance.tank_with_most_water() == 'zbiornik3'
 
 
 def test_fullest_tank(tanks_instance):
-    assert 'zbiornik3 jest najpełniejszy'
+    assert tanks_instance.fullest_tank() == 'zbiornik3'
 
 
 def test_all_empty_tanks(tanks_instance):
@@ -88,7 +88,9 @@ def test_show_events_zbiornik1(tanks_instance, mocker, capsys, mocking_event_log
     assert captured.out.strip() == ''
 
 
-def test_show_events_succes(tanks_instance, mocker, mocking_event_log_full):
-    mocker.patch('builtins.input', res=2)
-    x = tanks_instance.show_events()
-    assert x == {'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': True}}
+def test_show_events_succes(tanks_instance, mocker, mocking_event_log_full, capsys):
+    mocker.patch('builtins.input', return_value=2)
+    tanks_instance.show_events()
+    captured = capsys.readouterr()
+    x = captured.out.strip()
+    assert x == str({'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': True}})
