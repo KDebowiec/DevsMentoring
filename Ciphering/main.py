@@ -35,6 +35,7 @@ class ROT:
 
     def decrypt(self, text):
         print(self.encrypt(text))
+        return self.encrypt(text)
 
 
 class ROT13(ROT):
@@ -96,6 +97,7 @@ class Menu:
         self.file_handler = FileHandler()
         self.input_reader = InputReader()
         self.encrypted_words = {}
+        self.decrypted_text = ''
 
     def display_menu(self):
         print("==== Text Encryption Menu ====")
@@ -151,12 +153,13 @@ class Menu:
                 pattern = r"typ kodowania: ([a-zA-Z0-9]+),tekst: ([a-zA-Z0-9]+)"
                 match = re.search(pattern, line)
                 encoded_text = match.group(2)
-
                 if code_type == 'rot13':
                     self.rot13.decrypt(encoded_text)
+                    self.decrypted_text = self.rot13.decrypt(encoded_text)
 
                 elif code_type == 'rot47':
                     self.rot47.decrypt(encoded_text)
+                    self.decrypted_text = self.rot47.decrypt(encoded_text)
 
     def printing_file(self):
         with open('encrypted_texts', 'r') as file:
@@ -166,7 +169,7 @@ class Menu:
     def print_encrypted_words(self):
         print(f'typ kodowania: {self.encrypted_words["code"]},tekst: {self.encrypted_words["text"]} ')
 
-#
+
 # menu = Menu()
 # menu.run()
 #
