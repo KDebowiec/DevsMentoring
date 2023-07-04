@@ -1,12 +1,12 @@
 import pytest
 import main
-from main import *
 
 
 @pytest.fixture
 def menu_instance(mocker):
     mocker.patch('builtins.input', return_value='6')
     return main.Menu()
+
 
 @pytest.fixture
 def mock_open(mocker):
@@ -17,26 +17,30 @@ def mock_open(mocker):
 
     return _mock_open
 
+
 def test_rot13_encrypt(menu_instance, mocker):
     mocker.patch('builtins.input', side_effect=['Hello', 'rot13'])
     menu_instance.encrypt_text()
-    assert menu_instance.encrypted_words['text']  == 'Uryyb'
+    assert menu_instance.encrypted_words['text'] == 'Uryyb'
+
 
 def test_rot47_encrypt(menu_instance, mocker):
     mocker.patch('builtins.input', side_effect=['Hello', 'rot47'])
     menu_instance.encrypt_text()
-    assert menu_instance.encrypted_words['text']  == 'w6==@'
+    assert menu_instance.encrypted_words['text'] == 'w6==@'
+
 
 def test_saving_to_file(menu_instance, mocker, tmp_path):
     menu_instance.encrypted_words = {'code': 'rot13', 'text': 'testing'}
     file_path = tmp_path / 'encrypted_texts.txt'
-    menu_instance.save_to_file()
+    item = f'typ kodowania: {menu_instance.encrypted_words["code"]},tekst: {menu_instance.encrypted_words["text"]}\n'
+    menu_instance.file_handler.save_to_file(file_path, item)
     expected = 'typ kodowania: rot13,tekst: testing\n'
-    mocker.patch("builtins.open", mocker.mock_open(read_data=expected))
+
 
     with open(file_path, 'r') as file:
         data = file.readlines()
-
+        print(data)
     assert expected in data
 
 
@@ -71,12 +75,11 @@ def test_printing_words_from_memory(menu_instance, mocker, capsys):
     assert x == 'typ kodowania: rot13,tekst: testing'
 
 
-
 @pytest.mark.parametrize("input_text, expected_output", [
     ("Hello", "Hello")])
 def test_input_reader_read_input_valid(input_text, expected_output, monkeypatch):
     monkeypatch.setattr('builtins.input', lambda: input_text)
-    result = InputReader.read_input("Enter input: ")
+    result = main.InputReader.read_input("Enter input: ")
     assert result == expected_output
 
 
@@ -85,6 +88,6 @@ def test_input_reader_read_input_invalid(input_text, expected_output, monkeypatc
     monkeypatch.setattr('builtins.input', lambda: input_text)
 
     with pytest.raises(ValueError) as exc_info:
-        InputReader.validate_input(input_text)
+        main.InputReader.validate_input(input_text)
 
     assert str(exc_info.value) == f"Invalid character 'ą' found in input."
