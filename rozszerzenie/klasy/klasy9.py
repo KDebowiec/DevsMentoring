@@ -19,14 +19,17 @@
 # 3) To co zaimplementowaliśmy powyżej to demo “Event Sourcingu” - na czym ono polega?
 # Zaimplementuj metodę check_state(tank_name), która pozwoli określić, czy stan wody jest spójny z tym,
 # co mamy na liście historii operacji dla danego zbiornika.
+from datetime import datetime
 
-EVENT_LOG = []
+EVENT_LOG = [{'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': True}},
+             {'zbiornik1': {'time': 12, 'operation_name': 'pour', 'ilość wody': 400, 'succes': False}}]
 
 class Tanks:
     def __init__(self):
-        self.tank_dict = {}
+        self.tank_dict = {'zbiornik1': {'capacity': 1000, 'volume': 800},
+                          'zbiornik2': {'capacity': 900, 'volume': 300},
+                          'zbiornik3': {'capacity': 1100, 'volume': 1100}}
         self.menu()
-
 
     def menu(self):
         run = True
@@ -53,35 +56,63 @@ class Tanks:
                 self.all_empty_tanks()
             if choice == 8:
                 run = False
+            if choice == 9:
+                self.show_events()
+
 
     def add_tank(self):
         name = input('podaj nazwe zbiornika: ')
         capacity = int(input('podaj pojemnośc zbiornika: '))
         volume = int(input('podaj ilość wody w zbiorniku: '))
-        new_tank = Tank(name, capacity, volume)
-        self.tank_dict.update({name: {'capacity': capacity, 'volume': volume}})
-        print(self.tank_dict)
-        EVENT_LOG.append({'create': f'Stworzono obiekt {name}'})
+        try:
+            self.check_volume(volume, capacity)
+            new_tank = Tank(name, capacity, volume)
+            self.tank_dict.update({name: {'capacity': capacity, 'volume': volume}})
+            print(self.tank_dict)
+            now = datetime.now()
+            EVENT_LOG.append({name: {'time': now, 'operation_name': 'add_tank', 'ilość wody': volume, 'succes': True}})
+        except:
+            print('wypierdalaj')
+            now = datetime.now()
+            EVENT_LOG.append({name: {'time': now, 'operation_name': 'add_tank', 'ilość wody': volume, 'succes': False}})
+
+    def check_volume(self, volume, capacity):
+        if volume <= capacity:
+            pass
+        else:
+            print('wypierdalaj')
+            raise Exception('error')
 
     def pour_water(self):
         which_tank = input('do którego zbiornika chcesz dolać wody')
         user_volume = int(input('ile wody chcesz dolać?: '))
         tank_access = self.tank_dict[which_tank]
-        if tank_access['capacity'] - tank_access['volume'] >= user_volume:
+        try:
+            self.check_volume(user_volume, tank_access['capacity'] - tank_access['volume'])
             tank_access['volume'] += user_volume
-        else:
+            now = datetime.now()
+            EVENT_LOG.append({which_tank: {'time': now, 'operation_name': 'pour_water', 'ilość wody': user_volume, 'succes': True}})
+        except:
             print('Nie ma miejsca')
+            now = datetime.now()
+            EVENT_LOG.append({which_tank: {'time': now, 'operation_name': 'pour_water', 'ilość wody': user_volume, 'succes': False}})
+            print(self.tank_dict)
 
-        print(self.tank_dict)
     def pour_out_water(self):
         which_tank = input('z którego zbiornika chcesz odlać wody')
         user_volume = int(input('podaj ile wody chcesz wylać: '))
         tank_access = self.tank_dict[which_tank]
-        if tank_access['volume'] <= user_volume:
+        try:
+            self.check_volume(user_volume, tank_access['volume'])
+        # if tank_access['volume'] <= user_volume:
             tank_access['volume'] -= user_volume
-        else:
+            now = datetime.now()
+            EVENT_LOG.append({which_tank: {'time': now, 'operation_name': 'pour_out_water', 'ilość wody': user_volume, 'succes': True}})
+        except:
             print('Nie ma tyle wody')
-        print(self.tank_dict)
+            print(self.tank_dict)
+            now = datetime.now()
+            EVENT_LOG.append({which_tank: {'time': now, 'operation_name': 'pour_out_water', 'ilość wody': user_volume, 'succes': False}})
 
     def transfer_water(self):
         source_tank = input('z którego zbiornika chcesz odlać wody')
@@ -89,13 +120,20 @@ class Tanks:
         second_tank = input('do którego zbiornika chcesz nalać wody')
         second_tank_access = self.tank_dict[second_tank]
         user_volume = int(input('podaj ile wody chcesz przelać: '))
-
-        if source_tank_access['volume'] and second_tank_access['capacity'] - second_tank_access['volume'] >= user_volume:
+        try:
+            self.check_volume(user_volume, source_tank_access['volume'])
+            self.check_volume(user_volume, second_tank_access['capacity'] - second_tank_access['volume'])
             source_tank_access['volume'] -= user_volume
             second_tank_access['volume'] += user_volume
-        else:
+            now = datetime.now()
+            EVENT_LOG.append({source_tank: {'time': now, 'operation_name': 'pour_out_water', 'ilość wody': user_volume, 'succes': True}})
+            EVENT_LOG.append({second_tank: {'time': now, 'operation_name': 'pour_water', 'ilość wody': user_volume, 'succes': True}})
+        except:
             print('nie da się')
-        print(self.tank_dict)
+            print(self.tank_dict)
+            now = datetime.now()
+            EVENT_LOG.append({source_tank: {'time': now, 'operation_name': 'pour_out_water', 'ilość wody': user_volume, 'succes': False}})
+            EVENT_LOG.append({second_tank: {'time': now, 'operation_name': 'pour_water', 'ilość wody': user_volume, 'succes': False}})
 
     def tank_with_most_water(self):
         tanks_and_vols = {}
@@ -113,12 +151,6 @@ class Tanks:
                 print(f'{name} ma najwięcej wody')
                 return name
 
-        # max_volume = max(tanks_volume)
-        # tanks_vols[max_volume]
-        # for tank, tank_values in tank_dict.items():
-        #     if max_volume == tank_values[volume]:
-        #         return tank
-
     def fullest_tank(self):
         tanks_and_vols = {}
         tanks_vols = []
@@ -134,10 +166,6 @@ class Tanks:
             if max_volume == tanks_and_vols[name]:
                 print(f'{name} jest najpełniejszy')
                 return name
-        try:
-            self.record_event('check_full')
-        except ValueError:
-            print('nic sie nie zrobiło, nie ma eventu')
 
     def all_empty_tanks(self):
         tanks_and_vols = {}
@@ -153,8 +181,35 @@ class Tanks:
         print(f'zbiorniki {empty_tanks} są puste')
         return empty_tanks
 
-    def record_event(self, event_type):
-        EVENT_LOG.append({event_type: text})
+    def show_events(self):
+        operation = int(input('jeśli chcesz sprawdzić konkretny zbiornik, wciśnij 1, jeśli chcesz zobaczyć wszystkie udane operacje,'
+              'wciśńij 2, jeśli chcesz zobaczyć te nieudane, wciśnij 3: '))
+        if operation == 1:
+            choice = input('który zbiornik chcesz sprawdzić: ')
+            for dict_ in EVENT_LOG:
+                if choice in dict_:
+                    if dict_[choice]["operation_name"] == 'pour':
+                        print('typ operacji: dolewanie wody do zbiornika')
+                    elif dict_[choice]["operation_name"] == 'pour_out_water':
+                        print('odlewanie wody ze zbiornika')
+                    elif dict_[choice]["operation_name"] == 'add_tank':
+                        print('dodawanie zbiornika')
+                    print(f'data i czas: {dict_[choice]["time"]}, '
+                          f'ilość wody: {dict_[choice]["ilość wody"]}, ')
+                    if dict_[choice]["succes"]:
+                        print('operacja zakończona sukcesem')
+                    else:
+                        print('operacja nieudana')
+        elif operation == 2:
+            for dict_ in EVENT_LOG:
+                for i in dict_:
+                    if dict_[i]['succes']:
+                        print(dict_)
+        elif operation == 3:
+            for dict_ in EVENT_LOG:
+                for i in dict_:
+                    if not dict_[i]['succes']:
+                        print(dict_)
 
 
 class Tank:
@@ -162,12 +217,6 @@ class Tank:
         self.name = name
         self.capacity = capacity
         self.volume = volume
-        EVENT_LOG.append({'create': f'Stworzono obiekt {self.name}'})
 
-
-Tanks()
-
-# volume = input('Podaj wode')
-# source_tank = tank_list[0]
-# target_tank = tank_list[1]
-# target_tank.transfer_water(source_tank, volume)
+# tanki = Tanks()
+# tanki.menu()

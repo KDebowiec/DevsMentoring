@@ -1,48 +1,11 @@
-# class Manager:
-#     def __init__(self):
-#         self.order = {}
-#         self.add_order()
-#
-#     def add_order(self):
-#         run = True
-#         while run:
-#             what_to_do = int(input('co chcesz zrobić? 1 - dodać zamówienie, 2 - usunąć zamówienie: '))
-#             if what_to_do == 1:
-#                 choice = input('Dodaj zamówienie: ')
-#                 if choice not in self.order.keys():
-#                     price = int(input('podaj cenę: '))
-#                     order = Order(id, choice, price)
-#                     self.order.update({order: 1})
-#                     print(self.order)
-#                 else:
-#                     self.order[choice] += 1
-#                     print(self.order)
-#             elif what_to_do == 2:
-#                 which_one = input('jakie zamówienie chcesz usunąć?: ')
-#                 if which_one in self.order.keys():
-#                     self.order.pop(which_one)
-#                 else:
-#                     print('nie ma takiego zamówienia')
-#
-#
-# class Order:
-#     def __init__(self, id, name, price):
-#         self.id = id(Order)
-#         self.name = name
-#         self.price = price
-test_dict = {'name': {'capacity': 'capacity', 'volume': 0}, 'namgffe': {'capadhgfcity': 'capadhcity', 'volume': 'vofglume'}, 'nafgme': {'capadfhcity': 'capadfhcity', 'volume': 'vofdhglume'}}
-second_dict = []
-for name in test_dict:
-    for volume in test_dict[name]['volume']:
-        if volume == 0:
-            second_dict.append(test_dict[name]['volume'])
-print(second_dict)
+class Solution:
+    def twoSum(self, nums, target: int):
+        for i in nums:
+            for y in range(len(nums)):
+                if nums[i] + nums[y] == target:
+                    print([i, y])
+                    return [i, y]
 
-# for name, capacity in test_dict.items():
-#     print(name, capacity['volume'])
-#
-# for name in test_dict:
-#     second_dict.update({name: test_dict[name]['volume']})
-# print(second_dict)
-prefiks = {'karol': 12, 'przemek': 123, 'konrerthgtrergfad': 8}
-print(max(prefiks))
+
+solution = Solution()
+solution.twoSum([1, 2, 4], 5)
